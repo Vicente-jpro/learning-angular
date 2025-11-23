@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Capacity</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(room of rooms; track room){
+        <tr>
+            <th scope="row">{{ room.getId() }}</th>
+            <td>{{ room.getName() }}</td>
+            <td>{{ room.getCapacity() }}</td>
+            <td>
+                <button (click)="roomSelectedEvent(room)" >Select</button>
+            </td>
+        </tr>
+    }
+  </tbody>
+</table>
