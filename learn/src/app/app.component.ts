@@ -3,10 +3,16 @@ import { RouterOutlet } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CourseCardComponent } from './course-card/course-card.component';
 import { COURSES } from '../../db-data';
+import { RoomsComponent } from './rooms/rooms.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormsModule, CourseCardComponent],
+  imports: [
+    RouterOutlet, 
+    FormsModule, 
+    CourseCardComponent,
+    RoomsComponent
+  ],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
