@@ -3,3 +3,4 @@ export interface RoomI{
      getCapacity(): number;
      getId(): number;
 }
+

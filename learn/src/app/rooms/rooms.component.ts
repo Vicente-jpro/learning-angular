@@ -19,10 +19,13 @@ export class RoomsComponent implements OnInit{
       new Room(2,'Solteiro', 1),
       new Room(3,'Casal', 2)
     )
+
   }
 
   roomSelected(room: Room){
-    console.log(room)
+    //console.log(room)
+
+      this.rooms = [...this.rooms, room]
   }
 
 }
