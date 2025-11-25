@@ -1,30 +1,30 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Room } from './room';
+
 import { RoomListComponent } from './room-list/room-list.component';
+import { Room } from './Room';
+import { RoomService } from './service/room.service';
+import { EmployeeComponent } from '../employee/employee.component';
 
 @Component({
   selector: 'rooms',
   standalone: true,
-  imports: [RoomListComponent],
+  imports: [RoomListComponent, EmployeeComponent],
   templateUrl: './rooms.component.html',
 })
 export class RoomsComponent implements OnInit{
 
   rooms: Array<Room> = new Array<Room>();
 
-  ngOnInit(): void {
-    
-    this.rooms.push(
-      new Room(1,'Swite', 3),
-      new Room(2,'Solteiro', 1),
-      new Room(3,'Casal', 2)
-    )
+  constructor(private roomService: RoomService) { }
 
+  ngOnInit(): void {
+
+    this.rooms = this.roomService.getRooms()
   }
 
   roomSelected(room: Room){
     //console.log(room)
-
+    
       this.rooms = [...this.rooms, room]
   }
 
