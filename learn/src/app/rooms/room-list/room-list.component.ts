@@ -19,10 +19,17 @@ export class RoomListComponent {
   @Output()
   selectRoomEvent = new EventEmitter<Room>;
 
+  @Output() deleteEvent= new EventEmitter<Room>
+
   roomSelectedEvent(room: Room): void{
     this.room = room
     this.selectRoomEvent.emit(this.room)
     console.log(this.room)
+  }
+
+  delete(room: Room){
+    this.room = room
+    this.deleteEvent.emit(this.room)
   }
 
 }

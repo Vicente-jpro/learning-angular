@@ -1,3 +1,6 @@
 <employee></employee>
 
-<room-list [rooms]="rooms" (selectRoomEvent)="roomSelectedToAdd($event)"></room-list>
+<room-list 
+[rooms]="rooms" 
+(selectRoomEvent)="roomSelectedToAdd($event)"
+(deleteEvent)="delete($event)"></room-list>

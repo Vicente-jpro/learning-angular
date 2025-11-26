@@ -32,4 +32,8 @@ export class RoomService {
     return this.http.put<Room>(`/api/rooms/${room.roomNumber}`, room)
   }
 
+  delete(room: Room): Observable<Room>{
+    return this.http.delete<Room>(`/api/rooms/${room.roomNumber}`)
+  }
+
 }

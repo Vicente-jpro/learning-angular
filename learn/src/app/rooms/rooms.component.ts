@@ -36,8 +36,33 @@ export class RoomsComponent implements OnInit{
         .save(room)
         .subscribe({
           next: response =>  this.rooms = [...this.rooms, room],
-          error: response => console.log( response.error)
+          error: response => console.log( response.errors)
         })
+  }
+
+  update(room: Room){
+    this.roomService
+      .update(room)
+      .subscribe({
+        next: response => {
+          this.rooms = [...this.rooms, room]
+        },
+        error: response => console.log(response.errors)
+      })
+  }
+
+  delete(room: Room){
+    this.roomService
+      .delete(room)
+      .subscribe({
+        next: response => {
+            console.log('Room deleted successfully');
+            this.rooms = this.rooms.filter(r => r.roomNumber !== room.roomNumber);
+        },
+        error: response => {
+          console.log('Error deleting room:', response)
+        }
+      })
   }
 
 }
