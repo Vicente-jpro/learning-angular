@@ -1,12 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ManagerListComponent } from './manager-list/manager-list.component';
+import { Manager } from './manager';
+import { ManagerService } from './service/manager.service';
 
 @Component({
-  selector: 'app-manager',
+  selector: 'manager',
   standalone: true,
-  imports: [],
+  imports: [ManagerListComponent],
   templateUrl: './manager.component.html',
-  styleUrl: './manager.component.css'
 })
-export class ManagerComponent {
+export class ManagerComponent implements OnInit{
+
+  managers: Manager[] = []
+
+  constructor(private service: ManagerService){}
+
+  ngOnInit(): void {
+         this.service
+        .getManagers()
+        .subscribe({
+          next: response => this.managers = response
+        })
+  }
 
 }

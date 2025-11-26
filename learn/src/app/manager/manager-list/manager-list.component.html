@@ -1,0 +1,28 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Departament</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @for(manager of managersList; track manager){
+    <tr>
+      <th scope="row">{{ manager.id }}</th>
+      <td>{{ manager.name }}</td>
+      <td>{{ manager.email }}</td>
+      <td>{{ manager.department }}</td>
+      <td>
+        <button type="button" (click)="edit(manager)">Edit</button>
+      </td>
+      <td>
+        <button type="button" (click)="delete(manager)">Edit</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
