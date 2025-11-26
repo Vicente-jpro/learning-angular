@@ -29,10 +29,15 @@ export class RoomsComponent implements OnInit{
     })
   }
 
-  roomSelected(room: Room){
+  roomSelectedToAdd(room: Room){
     //console.log(room)
     
-      this.rooms = [...this.rooms, room]
+      this.roomService
+        .save(room)
+        .subscribe({
+          next: response =>  this.rooms = [...this.rooms, room],
+          error: response => console.log( response.error)
+        })
   }
 
 }

@@ -21,7 +21,15 @@ export class RoomService {
   }
 
   getRooms(): Observable<Room[]>{
-    return this.http.get<Room[]>('/api/rooms');
+    return this.http.get<Room[]>('/api/rooms')
+  }
+
+  save(room: Room): Observable<Room>{
+    return this.http.post<Room>('/api/rooms', room)
+  }
+
+  update(room: Room): Observable<Room>{
+    return this.http.put<Room>(`/api/rooms/${room.roomNumber}`, room)
   }
 
 }
