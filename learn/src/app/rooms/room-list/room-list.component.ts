@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Room } from '../Room';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
   selector: 'room-list',
   standalone: true,
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './room-list.component.html'
 })
 export class RoomListComponent {
@@ -13,7 +14,7 @@ export class RoomListComponent {
   @Input()
   rooms: Array<Room> = new Array<Room>();
 
-  room: Room = new Room(0, '', 0) 
+  room!: Room;
 
   @Output()
   selectRoomEvent = new EventEmitter<Room>;

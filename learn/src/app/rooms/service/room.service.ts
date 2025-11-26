@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Room } from '../Room';
-import { environment } from '../../../environments/environment';
+import { APP_SERVICE_CONFIG } from '../../configs/appconfig.service';
+import { AppConfig } from '../../configs/appconfig.interface';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +13,15 @@ export class RoomService {
    rooms: Array<Room> = new Array<Room>();
 
     
-  constructor() { 
-    console.log(environment.apiEndpoint);
-    this.rooms.push(
-      new Room(1,'Swite', 3),
-      new Room(2,'Solteiro', 1),
-      new Room(3,'Casal', 2)
-    )
+  constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig,
+    private http: HttpClient) {
+
+    console.log(this.config.apiEndpoint);
+
   }
 
-  getRooms(): Room[]{
-    
-    return this.rooms;
+  getRooms(): Observable<Room[]>{
+    return this.http.get<Room[]>('/api/rooms');
   }
 
 }

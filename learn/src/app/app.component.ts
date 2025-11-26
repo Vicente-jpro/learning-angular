@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
-import { COURSES } from '../../db-data';
 import { RoomsComponent } from './rooms/rooms.component';
+import { localStorageToken } from './localstorage.token';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,12 @@ import { RoomsComponent } from './rooms/rooms.component';
   standalone: true,
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
+  constructor(@Inject(localStorageToken) private storageToken: Storage ){}
+
+  ngOnInit(): void {
+      this.storageToken.setItem('name', 'Vicente Simao token')
+  }
 
 }

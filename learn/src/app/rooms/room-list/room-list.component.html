@@ -2,22 +2,32 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Capacity</th>
+      <th scope="col">Room Number</th>
+      <th scope="col">Room Type</th>
+      <th scope="col">Amenities</th>
+      <th scope="col">Price</th>
+      <th scope="col">Photos</th>
+      <th scope="col">Check-in Time</th>
+      <th scope="col">Check-out Time</th>
+      <th scope="col">Rating</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-    @for(room of rooms; track room){
-        <tr>
-            <th scope="row">{{ room.getId() }}</th>
-            <td>{{ room.getName() }}</td>
-            <td>{{ room.getCapacity() }}</td>
-            <td>
-                <button (click)="roomSelectedEvent(room)" >Select</button>
-            </td>
-        </tr>
-    }
+  @for(room of rooms; track room){
+    <tr>
+      <td>{{ room.roomNumber }}</td>
+      <td>{{ room.roomType }}</td>
+      <td>{{ room.amenities }}</td>
+      <td>{{ room.price }}</td>
+      <td>{{ room.photos }}</td>
+      <td>{{ room.checkinTime | date }}</td>
+      <td>{{ room.checkoutTime | date }}</td>
+      <td>{{ room.rating }}</td>
+      <td>
+        <button (click)="roomSelectedEvent(room)" >Select</button>
+      </td>
+    </tr>
+  }
   </tbody>
 </table>

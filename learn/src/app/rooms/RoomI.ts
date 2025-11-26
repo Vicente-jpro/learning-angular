@@ -1,6 +1,13 @@
 export interface RoomI{
-     getName(): string;
-     getCapacity(): number;
-     getId(): number;
+
+    getRoomNumber(): string;
+    getRoomType(): string;
+    getAmenities(): string;
+    getPrice(): number;
+    getPhotos(): string;
+    getCheckinTime(): Date;
+    getCheckoutTime(): Date;
+    getRating(): number;
+
 }
 

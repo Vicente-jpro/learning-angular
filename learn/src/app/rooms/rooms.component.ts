@@ -19,7 +19,14 @@ export class RoomsComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.rooms = this.roomService.getRooms()
+     this.roomService
+    .getRooms()
+    .subscribe({
+      next: response => {
+        console.log(response)
+        this.rooms = response
+      }
+    })
   }
 
   roomSelected(room: Room){
