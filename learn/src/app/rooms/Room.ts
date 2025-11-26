@@ -1,6 +1,5 @@
-import { RoomI } from "./RoomI";
 
-export class Room implements RoomI{
+export class Room {
     // make these public so plain objects from HTTP have the expected properties
     roomNumber: string;
     roomType: string;
@@ -31,36 +30,4 @@ export class Room implements RoomI{
         this.rating = rating;
     }
     
-    // keep the original methods for backward compatibility
-    getRoomNumber(): string {
-        return this.roomNumber;
-    }
-    
-    getRoomType(): string {
-        return this.roomType;
-    }
-    
-    getAmenities(): string {
-        return this.amenities;
-    }
-    
-    getPrice(): number {
-        return this.price;
-    }
-    
-    getPhotos(): string {
-        return this.photos;
-    }
-    
-    getCheckinTime(): Date {
-        return this.checkinTime;
-    }
-    
-    getCheckoutTime(): Date {
-        return this.checkoutTime;
-    }
-    
-    getRating(): number {
-        return this.rating;
-    }
 }
