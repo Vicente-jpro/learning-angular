@@ -9,9 +9,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RoomService {
-
-   rooms: Array<Room> = new Array<Room>();
-
     
   constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig,
     private http: HttpClient) {
@@ -36,4 +33,5 @@ export class RoomService {
     return this.http.delete<Room>(`/api/rooms/${room.roomNumber}`)
   }
 
+  
 }
