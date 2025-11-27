@@ -19,7 +19,10 @@ export class ManagerComponent implements OnInit{
          this.service
         .getManagers()
         .subscribe({
-          next: response => this.managers = response
+          next: response =>{
+            console.log(response)
+            this.managers = response
+          } 
         })
   }
 
