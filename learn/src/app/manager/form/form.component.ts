@@ -17,6 +17,5 @@ export class FormComponent {
 
       this.managerEvent.emit(this.manager)
       console.log(this.manager)
-
     }
 }

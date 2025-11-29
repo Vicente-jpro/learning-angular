@@ -1,20 +1,17 @@
 <p>  {{ title }}  </p>
 <form (ngSubmit)="onSubtimit()">
     <div class="mb-3">
-        <label >Email address</label>
-        <input type="text" [(ngModel)]="manager.id" name="id">
-    </div>
-    <div class="mb-3">
-        <label>Email address</label>
+        <label>Name</label>
         <input type="text"  [(ngModel)]="manager.name" name="name">
     </div>
     <div class="mb-3">
-        <label >Email address</label>
+        <label >Email</label>
         <input type="email"  [(ngModel)]="manager.email" name="email">
     </div>
     <div class="mb-3">
-        <label >Email address</label>
+        <label >Departamento</label>
         <input type="email"  [(ngModel)]="manager.department" name="departament">
     </div>
+    <button type="submit">Save</button>
 </form>
 
