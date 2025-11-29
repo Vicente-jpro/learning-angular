@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RoomsComponent } from './rooms/rooms.component';
 import { localStorageToken } from './localstorage.token';
@@ -8,6 +8,7 @@ import { localStorageToken } from './localstorage.token';
   selector: 'app-root',
   imports: [
     RouterOutlet, 
+    RouterLink,
     FormsModule, 
     RoomsComponent
   ],

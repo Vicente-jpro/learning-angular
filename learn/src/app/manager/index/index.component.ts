@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Manager } from '../manager';
 
 @Component({
-  selector: 'index',
+  selector: 'manager-index',
   standalone: true,
   imports: [],
   templateUrl: './index.component.html'
@@ -10,7 +10,7 @@ import { Manager } from '../manager';
 export class IndexComponent {
 
   
-    @Input() managersList: Manager[] = []
+    @Input() managerList: Manager[] = []
   
     ngOnInit(): void {
         

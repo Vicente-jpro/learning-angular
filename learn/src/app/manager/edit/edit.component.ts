@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
+import { FormComponent } from '../form/form.component';
 
 @Component({
-  selector: 'app-edit',
+  selector: 'manager-edit',
   standalone: true,
-  imports: [],
+  imports: [FormComponent],
   templateUrl: './edit.component.html',
-  styleUrl: './edit.component.css'
 })
-export class EditComponent {
+export class EditComponent{
 
+  title: string  = 'Editar Manager'
 }

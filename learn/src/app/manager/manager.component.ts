@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ManagerListComponent } from './manager-list/manager-list.component';
 import { Manager } from './manager';
 import { ManagerService } from './service/manager.service';
+import { IndexComponent } from './index/index.component';
 
 @Component({
   selector: 'manager',
   standalone: true,
-  imports: [ManagerListComponent],
-  templateUrl: './manager.component.html',
+  imports: [IndexComponent],
+  templateUrl: './manager.component.html'
 })
 export class ManagerComponent implements OnInit{
 

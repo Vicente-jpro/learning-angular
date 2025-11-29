@@ -5,7 +5,7 @@ export class Manager{
      department: string
 
      constructor(
-          id: number,
+     id: number,
      name: string,
      email: string,
      department: string
