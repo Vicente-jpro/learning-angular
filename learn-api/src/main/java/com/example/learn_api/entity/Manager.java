@@ -1,5 +1,6 @@
 package com.example.learn_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,5 +29,6 @@ public class Manager {
     private String department;
     
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Employee> employees = new ArrayList<>();
 }

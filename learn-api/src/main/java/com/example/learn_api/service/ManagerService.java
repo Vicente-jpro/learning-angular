@@ -70,7 +70,7 @@ public class ManagerService {
     
     private Manager convertToEntity(ManagerDTO managerDTO) {
         Manager manager = new Manager();
-        manager.setId(managerDTO.getId());
+        // Don't set ID - let JPA generate it
         manager.setName(managerDTO.getName());
         manager.setEmail(managerDTO.getEmail());
         manager.setDepartment(managerDTO.getDepartment());
