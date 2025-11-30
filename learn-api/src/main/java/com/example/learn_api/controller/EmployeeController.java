@@ -31,41 +31,25 @@ public class EmployeeController {
     
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable Long id) {
-        try {
-            EmployeeDTO employee = employeeService.getEmployeeById(id);
-            return ResponseEntity.ok(employee);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        EmployeeDTO employee = employeeService.getEmployeeById(id);
+        return ResponseEntity.ok(employee);
     }
     
     @PostMapping
     public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        try {
-            EmployeeDTO createdEmployee = employeeService.createEmployee(employeeDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdEmployee);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        EmployeeDTO createdEmployee = employeeService.createEmployee(employeeDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdEmployee);
     }
     
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeDTO> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDTO employeeDTO) {
-        try {
-            EmployeeDTO updatedEmployee = employeeService.updateEmployee(id, employeeDTO);
-            return ResponseEntity.ok(updatedEmployee);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        EmployeeDTO updatedEmployee = employeeService.updateEmployee(id, employeeDTO);
+        return ResponseEntity.ok(updatedEmployee);
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
-        try {
-            employeeService.deleteEmployee(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        employeeService.deleteEmployee(id);
+        return ResponseEntity.noContent().build();
     }
 }

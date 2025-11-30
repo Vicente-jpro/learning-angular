@@ -2,6 +2,7 @@ package com.example.learn_api.service;
 
 import com.example.learn_api.dto.ManagerDTO;
 import com.example.learn_api.entity.Manager;
+import com.example.learn_api.exception.ResourceNotFoundException;
 import com.example.learn_api.repository.ManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class ManagerService {
     @Transactional(readOnly = true)
     public ManagerDTO getManagerById(Long id) {
         Manager manager = managerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Manager not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Manager", "id", id));
         return convertToDTO(manager);
     }
     
@@ -40,7 +41,7 @@ public class ManagerService {
     @Transactional
     public ManagerDTO updateManager(Long id, ManagerDTO managerDTO) {
         Manager manager = managerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Manager not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Manager", "id", id));
         
         manager.setName(managerDTO.getName());
         manager.setEmail(managerDTO.getEmail());
@@ -53,7 +54,7 @@ public class ManagerService {
     @Transactional
     public void deleteManager(Long id) {
         if (!managerRepository.existsById(id)) {
-            throw new RuntimeException("Manager not found with id: " + id);
+            throw new ResourceNotFoundException("Manager", "id", id);
         }
         managerRepository.deleteById(id);
     }

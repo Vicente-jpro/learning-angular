@@ -25,41 +25,25 @@ public class ManagerController {
     
     @GetMapping("/{id}")
     public ResponseEntity<ManagerDTO> getManagerById(@PathVariable Long id) {
-        try {
-            ManagerDTO manager = managerService.getManagerById(id);
-            return ResponseEntity.ok(manager);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        ManagerDTO manager = managerService.getManagerById(id);
+        return ResponseEntity.ok(manager);
     }
     
     @PostMapping
     public ResponseEntity<ManagerDTO> createManager(@RequestBody ManagerDTO managerDTO) {
-        try {
-            ManagerDTO createdManager = managerService.createManager(managerDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdManager);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        ManagerDTO createdManager = managerService.createManager(managerDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdManager);
     }
     
     @PutMapping("/{id}")
     public ResponseEntity<ManagerDTO> updateManager(@PathVariable Long id, @RequestBody ManagerDTO managerDTO) {
-        try {
-            ManagerDTO updatedManager = managerService.updateManager(id, managerDTO);
-            return ResponseEntity.ok(updatedManager);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        ManagerDTO updatedManager = managerService.updateManager(id, managerDTO);
+        return ResponseEntity.ok(updatedManager);
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteManager(@PathVariable Long id) {
-        try {
-            managerService.deleteManager(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        managerService.deleteManager(id);
+        return ResponseEntity.noContent().build();
     }
 }

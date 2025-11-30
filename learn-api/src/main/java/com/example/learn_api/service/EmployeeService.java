@@ -3,6 +3,7 @@ package com.example.learn_api.service;
 import com.example.learn_api.dto.EmployeeDTO;
 import com.example.learn_api.entity.Employee;
 import com.example.learn_api.entity.Manager;
+import com.example.learn_api.exception.ResourceNotFoundException;
 import com.example.learn_api.repository.EmployeeRepository;
 import com.example.learn_api.repository.ManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class EmployeeService {
     @Transactional(readOnly = true)
     public EmployeeDTO getEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Employee", "id", id));
         return convertToDTO(employee);
     }
     
@@ -48,7 +49,7 @@ public class EmployeeService {
         
         if (employeeDTO.getManagerId() != null) {
             Manager manager = managerRepository.findById(employeeDTO.getManagerId())
-                    .orElseThrow(() -> new RuntimeException("Manager not found with id: " + employeeDTO.getManagerId()));
+                    .orElseThrow(() -> new ResourceNotFoundException("Manager", "id", employeeDTO.getManagerId()));
             employee.setManager(manager);
         }
         
@@ -59,7 +60,7 @@ public class EmployeeService {
     @Transactional
     public EmployeeDTO updateEmployee(Long id, EmployeeDTO employeeDTO) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Employee", "id", id));
         
         employee.setName(employeeDTO.getName());
         employee.setEmail(employeeDTO.getEmail());
@@ -67,7 +68,7 @@ public class EmployeeService {
         
         if (employeeDTO.getManagerId() != null) {
             Manager manager = managerRepository.findById(employeeDTO.getManagerId())
-                    .orElseThrow(() -> new RuntimeException("Manager not found with id: " + employeeDTO.getManagerId()));
+                    .orElseThrow(() -> new ResourceNotFoundException("Manager", "id", employeeDTO.getManagerId()));
             employee.setManager(manager);
         } else {
             employee.setManager(null);
@@ -80,7 +81,7 @@ public class EmployeeService {
     @Transactional
     public void deleteEmployee(Long id) {
         if (!employeeRepository.existsById(id)) {
-            throw new RuntimeException("Employee not found with id: " + id);
+            throw new ResourceNotFoundException("Employee", "id", id);
         }
         employeeRepository.deleteById(id);
     }
