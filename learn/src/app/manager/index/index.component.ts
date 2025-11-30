@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Manager } from '../manager';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { ManagerService } from '../service/manager.service';
 
 @Component({
   selector: 'manager-index',
@@ -10,12 +11,12 @@ import { RouterLink } from "@angular/router";
 })
 export class IndexComponent {
 
-  
     @Input() managerList: Manager[] = []
+    
+    manager: Manager = new Manager('','', '', '')
 
-    manager: Manager = new Manager(0,'', '', '')
+    constructor(private service: ManagerService, private router: Router){}
 
-  
     ngOnInit(): void {
         
     }
@@ -23,8 +24,35 @@ export class IndexComponent {
       
     }
   
-    edit(manager: Manager){
-      
-    }
+   edit(manager: Manager){
+     //this.router.navigate(['managers/', manager.id])
+     console.log('Attempting to load manager with ID:', manager.id);
 
+     this.service
+        .findById(manager.id)
+        .subscribe({
+          next: response => {
+            //this.manager = console.log(response) 
+            console.log('Manager loaded:', response);
+          },
+          error: response => {
+            console.log('Error loading manager:', response.error);
+          }
+          
+        })
+
+  }
+
+  /*
+    mapToManager(response: any): Manager{
+      let newManager = new Manager(0,'', '', '')
+      newManager.id = parseInt(response.id)
+      newManager.name = response.name 
+      newManager.email = response.email 
+      newManager.department = response.department
+
+      return newManager
+
+    }
+    */
 }

@@ -21,10 +21,13 @@ export class EditComponent implements OnInit{
   }
 
   ngOnInit(): void {
-        
+
   }
 
-  findById(id: number){
+  edit(manager: Manager){
+    
+  }
+  findById(id: string){
     return this.service
             .findById(id)
             .subscribe({
@@ -35,7 +38,7 @@ export class EditComponent implements OnInit{
 
   update(manager: Manager){
     this.service 
-        .update(manager, manager.id)
+        .update(manager, manager.id )
         .subscribe({
           next: response => this.router.navigate(['/managers']),
           error: rsponse => console.log("Error on update manager")

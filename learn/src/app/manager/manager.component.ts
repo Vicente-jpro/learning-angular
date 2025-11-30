@@ -21,7 +21,6 @@ export class ManagerComponent implements OnInit{
         .getManagers()
         .subscribe({
           next: response =>{
-            console.log(response)
             this.managers = response
           } 
         })

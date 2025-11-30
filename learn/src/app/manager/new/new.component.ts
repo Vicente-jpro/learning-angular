@@ -13,7 +13,7 @@ export class NewComponent {
 
   title: string  = 'Adicionar um novo Manager'
 
-  manager: Manager = new Manager(0,'', '', '')
+  manager: Manager = new Manager('','', '', '')
 
   constructor(private service: ManagerService){ }
 
