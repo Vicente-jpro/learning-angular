@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Manager } from '../manager';
 import { RouterLink } from "@angular/router";
 
@@ -12,16 +12,19 @@ export class IndexComponent {
 
   
     @Input() managerList: Manager[] = []
+
+    manager: Manager = new Manager(0,'', '', '')
+
   
     ngOnInit(): void {
         
     }
     delete(manager: Manager){
-  
+      
     }
   
     edit(manager: Manager){
-  
+      
     }
 
 }

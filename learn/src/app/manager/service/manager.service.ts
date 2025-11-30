@@ -21,4 +21,16 @@ export class ManagerService {
   getManagers(): Observable<Manager[]>{
     return this.http.get<Manager[]>('/api/managers')
   }
+
+  save(manager: Manager): Observable<Manager>{
+    return this.http.post<Manager>('/api/managers', manager)
+  }
+
+  update(manager: Manager, id: number): Observable<Manager>{
+    return this.http.put<Manager>(`/api/managers/${id}`, manager)
+  }
+
+  findById(id: number): Observable<Manager>{
+    return this.http.get<Manager>(`/api/managers/${id}`)
+  }
 }
