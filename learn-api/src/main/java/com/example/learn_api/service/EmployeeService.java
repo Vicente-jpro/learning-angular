@@ -48,7 +48,8 @@ public class EmployeeService {
         Employee employee = convertToEntity(employeeDTO);
         
         if (employeeDTO.getManagerId() != null) {
-            Manager manager = managerRepository.findById(employeeDTO.getManagerId())
+            Long id = Long.valueOf(employeeDTO.getManagerId());
+            Manager manager = managerRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("Manager", "id", employeeDTO.getManagerId()));
             employee.setManager(manager);
         }
@@ -67,7 +68,8 @@ public class EmployeeService {
         employee.setPosition(employeeDTO.getPosition());
         
         if (employeeDTO.getManagerId() != null) {
-            Manager manager = managerRepository.findById(employeeDTO.getManagerId())
+               Long employeeId = Long.valueOf(employeeDTO.getManagerId());
+            Manager manager = managerRepository.findById(employeeId)
                     .orElseThrow(() -> new ResourceNotFoundException("Manager", "id", employeeDTO.getManagerId()));
             employee.setManager(manager);
         } else {
@@ -88,17 +90,17 @@ public class EmployeeService {
     
     private EmployeeDTO convertToDTO(Employee employee) {
         return new EmployeeDTO(
-                employee.getId(),
+                employee.getId().toString(),
                 employee.getName(),
                 employee.getEmail(),
                 employee.getPosition(),
-                employee.getManager() != null ? employee.getManager().getId() : null
+                employee.getManager() != null ? employee.getManager().getId().toString() : null
         );
     }
     
     private Employee convertToEntity(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
-        employee.setId(employeeDTO.getId());
+        employee.setId(Long.valueOf(employeeDTO.getId()));
         employee.setName(employeeDTO.getName());
         employee.setEmail(employeeDTO.getEmail());
         employee.setPosition(employeeDTO.getPosition());

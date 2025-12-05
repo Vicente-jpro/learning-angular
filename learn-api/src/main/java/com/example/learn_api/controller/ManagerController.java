@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/api/managers")
 @CrossOrigin(origins = "*")
@@ -24,8 +25,8 @@ public class ManagerController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<ManagerDTO> getManagerById(@PathVariable Long id) {
-        ManagerDTO manager = managerService.getManagerById(id);
+    public ResponseEntity<ManagerDTO> getManagerById(@PathVariable String id) {
+        ManagerDTO manager = managerService.getManagerById(Long.valueOf(id));
         return ResponseEntity.ok(manager);
     }
     
@@ -47,3 +48,4 @@ public class ManagerController {
         return ResponseEntity.noContent().build();
     }
 }
+

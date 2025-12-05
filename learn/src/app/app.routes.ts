@@ -15,7 +15,7 @@ export const routes: Routes = [
                 loadComponent: () => import('./manager/new/new.component').then(c => c.NewComponent)
             },
             {
-                path: 'edit/:id',
+                path: ':id',
                 loadComponent: () => import('./manager/edit/edit.component').then(c => c.EditComponent)
             },
             

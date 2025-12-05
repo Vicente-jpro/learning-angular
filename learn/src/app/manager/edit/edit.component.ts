@@ -14,7 +14,7 @@ export class EditComponent implements OnInit{
 
   title: string  = 'Editar Manager'
 
-  managerSaved!: Manager
+  managerSaved: Manager = new Manager('','', '', '')
 
   constructor(private service: ManagerService, private router: Router){ 
 
@@ -22,11 +22,10 @@ export class EditComponent implements OnInit{
 
   ngOnInit(): void {
 
+    this.findById("1")
+
   }
 
-  edit(manager: Manager){
-    
-  }
   findById(id: string){
     return this.service
             .findById(id)
@@ -36,13 +35,17 @@ export class EditComponent implements OnInit{
             })
   }
 
+  submit(manager: Manager){
+    this.update(manager)
+  }
   update(manager: Manager){
-    this.service 
-        .update(manager, manager.id )
+    this.service
+        .update(manager, manager.id)
         .subscribe({
           next: response => this.router.navigate(['/managers']),
-          error: rsponse => console.log("Error on update manager")
+          error: response => console.log(response)
         })
-
   }
+
+
 }

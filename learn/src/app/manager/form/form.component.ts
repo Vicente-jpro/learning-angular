@@ -11,7 +11,8 @@ import { FormsModule } from '@angular/forms';
 export class FormComponent {
     @Input() title = ''
     @Input() manager!: Manager;
-
+    @Input() buttonSubmit = ''
+    
     @Output() managerEvent = new EventEmitter<Manager>
     onSubtimit(){
 

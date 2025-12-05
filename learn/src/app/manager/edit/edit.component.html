@@ -1,3 +1,6 @@
 <manager-form 
 [title]="title" 
-[manager]="managerSaved"></manager-form>
+[manager]="managerSaved"
+(managerEvent)="submit($event)" 
+[buttonSubmit]="'Atualizar'">
+</manager-form>

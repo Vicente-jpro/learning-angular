@@ -61,7 +61,7 @@ public class ManagerService {
     
     private ManagerDTO convertToDTO(Manager manager) {
         return new ManagerDTO(
-                manager.getId(),
+                manager.getId().toString(),
                 manager.getName(),
                 manager.getEmail(),
                 manager.getDepartment()

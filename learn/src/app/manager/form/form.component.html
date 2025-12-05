@@ -1,5 +1,13 @@
 <p>  {{ title }}  </p>
 <form (ngSubmit)="onSubtimit()">
+    
+    @if( manager.id != null ){    
+        <div class="mb-3">
+            <label>Id</label>
+            <input type="text"  [(ngModel)]="manager.id" name="id" hidden="true">
+        </div>
+    }
+
     <div class="mb-3">
         <label>Name</label>
         <input type="text"  [(ngModel)]="manager.name" name="name">
@@ -12,6 +20,6 @@
         <label >Departamento</label>
         <input type="email"  [(ngModel)]="manager.department" name="departament">
     </div>
-    <button type="submit">Save</button>
+    <button type="submit">{{ buttonSubmit }}</button>
 </form>
 

@@ -13,6 +13,8 @@ export class IndexComponent {
 
     @Input() managerList: Manager[] = []
     
+    @Input() managerSaved: Manager = new Manager('','', '', '')
+
     manager: Manager = new Manager('','', '', '')
 
     constructor(private service: ManagerService, private router: Router){}
@@ -25,34 +27,7 @@ export class IndexComponent {
     }
   
    edit(manager: Manager){
-     //this.router.navigate(['managers/', manager.id])
-     console.log('Attempting to load manager with ID:', manager.id);
-
-     this.service
-        .findById(manager.id)
-        .subscribe({
-          next: response => {
-            //this.manager = console.log(response) 
-            console.log('Manager loaded:', response);
-          },
-          error: response => {
-            console.log('Error loading manager:', response.error);
-          }
-          
-        })
-
+     this.router.navigate(['managers/', manager.id])
   }
-
-  /*
-    mapToManager(response: any): Manager{
-      let newManager = new Manager(0,'', '', '')
-      newManager.id = parseInt(response.id)
-      newManager.name = response.name 
-      newManager.email = response.email 
-      newManager.department = response.department
-
-      return newManager
-
-    }
-    */
+  
 }
