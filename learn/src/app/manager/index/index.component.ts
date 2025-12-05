@@ -32,9 +32,9 @@ export class IndexComponent {
         })
 
     }
-  
+  /*
    edit(manager: Manager){
      this.router.navigate(['managers/', manager.id])
   }
-
+*/
 }

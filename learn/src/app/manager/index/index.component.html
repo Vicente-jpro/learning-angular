@@ -18,7 +18,7 @@
       <td>{{ manager.email }}</td>
       <td>{{ manager.department }}</td>
       <td>
-        <button type="button" (click)="edit(manager)">Edit</button>
+        <button type="button" [routerLink]="[manager.id]">Edit</button>
       </td>
       <td>
         <button type="button" (click)="delete(manager)">delete</button>
