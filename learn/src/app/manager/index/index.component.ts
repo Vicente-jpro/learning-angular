@@ -23,11 +23,18 @@ export class IndexComponent {
         
     }
     delete(manager: Manager){
-      
+
+      this.service
+        .delete(manager.id)
+        .subscribe({
+          next: response => console.log('Accesso resolvido'),
+          error: response => console.log('Error ao create')
+        })
+
     }
   
    edit(manager: Manager){
      this.router.navigate(['managers/', manager.id])
   }
-  
+
 }

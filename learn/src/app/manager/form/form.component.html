@@ -2,9 +2,9 @@
 <form (ngSubmit)="onSubtimit()">
     
     @if( manager.id != null ){    
-        <div class="mb-3">
+        <div class="mb-3" [hidden]="true">
             <label>Id</label>
-            <input type="text"  [(ngModel)]="manager.id" name="id" hidden="true">
+            <input type="text"  [(ngModel)]="manager.id" name="id">
         </div>
     }
 

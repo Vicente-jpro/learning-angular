@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { APP_SERVICE_CONFIG } from '../../configs/appconfig.service';
 import { AppConfig } from '../../configs/appconfig.interface';
-import { HttpClient } from '@angular/common/http';
-import { Room } from '../../rooms/Room';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Manager } from '../manager';
 
@@ -11,6 +10,7 @@ import { Manager } from '../manager';
 })
 export class ManagerService {
   
+  headers = new HttpHeaders({'token': '123432ojduiwefh8923u4r894r9'})
   constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig,
     private http: HttpClient) {
 
@@ -19,7 +19,9 @@ export class ManagerService {
   }
 
   getManagers(): Observable<Manager[]>{
-    return this.http.get<Manager[]>('/api/managers')
+    return this.http.get<Manager[]>('/api/managers',
+      {headers: this.headers}
+    )
   }
 
   save(manager: Manager): Observable<Manager>{
@@ -31,7 +33,10 @@ export class ManagerService {
   }
 
   findById(id: string): Observable<any>{
-
     return this.http.get<any>(`/api/managers/${id}`)
+  }
+
+  delete(id: string){
+    return this.http.delete(`/api/managers/${id}`)
   }
 }
