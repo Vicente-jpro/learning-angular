@@ -5,8 +5,6 @@ import { localStorageToken } from './localstorage.token';
 export const requestInterceptor: HttpInterceptorFn = (req, next) => {
   const localStorage = inject(localStorageToken);
   
-  console.log('Interceptor foi chamado: ', req);
-  
   // Get the token from localStorage
   const token = localStorage.getItem('token');
   

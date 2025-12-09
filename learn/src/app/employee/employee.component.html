@@ -1,1 +1,60 @@
 <p>employee works!</p>
+
+<h1>Learning reactive forms</h1> 
+<br>
+<p>Form Erros: {{ profileForm.getError('lastName') }}</p>
+<p>Form Status: {{ profileForm.status }}</p>
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="firstName" />
+
+  @if (profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched) {
+    <div style="color: red;">
+      @if (profileForm.get('firstName')?.hasError('required')) {
+        <small>First name is required</small>
+      }
+      @if (profileForm.get('firstName')?.hasError('minlength')) {
+        <small>First name must be at least 3 characters</small>
+      }
+    </div>
+  }
+  <br>
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="text" formControlName="lastName" />
+
+  @if (profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched) {
+    <div style="color: red;">
+      @if (profileForm.get('lastName')?.hasError('required')) {
+        <small>Last name is required</small>
+      }
+    </div>
+  }
+  <br>
+<!-- Nested FormGroup for Address -->
+  <div formGroupName="address">
+    <label for="street">Street: </label>
+    <input id="street" type="text" formControlName="street" />  <br>
+    <label for="city">City: </label>
+    <input id="city" type="text" formControlName="city" />  <br>
+    <label for="state">State: </label>
+    <input id="state" type="text" formControlName="state" /> <br>
+    <label for="zip">Zip Code: </label>
+    <input id="zip" type="text" formControlName="zip" /> <br>
+  </div>
+
+  <!-- Dynamic FormArray for Aliases -->
+  <div formArrayName="aliases">
+    <h2>Aliases</h2>
+    <button type="button" (click)="addAlias()">+ Add another alias</button>
+    @for (alias of aliases.controls; track $index; let i = $index) {
+      <div>
+        <!-- The repeated alias template -->
+        <label for="alias-{{ i }}">Alias:</label>
+        <input id="alias-{{ i }}" type="text" [formControlName]="i" />
+      </div>
+    }
+  </div>
+
+  <button type="submit" [disabled]="profileForm.invalid">Submit</button>
+</form>

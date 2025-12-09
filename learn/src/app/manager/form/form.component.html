@@ -10,15 +10,37 @@
 
     <div class="mb-3">
         <label>Name</label>
-        <input required type="text"  [(ngModel)]="manager.name" name="name">
+        <input  
+        #name="ngModel"
+        required
+        minlength="5"
+        maxlength="90"
+        type="text"  
+        [(ngModel)]="manager.name" 
+        name="name">
     </div>
+ <!--Form validation message-->
+    @if( name.invalid && (name.dirty || name.touched) ){    
+        <div class="alert alert-danger">
+            @if(name.errors?.['required']){            
+                Name is required.
+            }
+            
+            @if (name.errors?.['minlength']) {
+                Name must be at least 5 characters long.
+            }
+            @if (name.errors?.['maxlength']) {
+                Name cannot be more than 90 characters long.
+            }
+        </div>
+    }
     <div class="mb-3">
         <label >Email</label>
-        <input required type="email"  [(ngModel)]="manager.email" name="email">
+        <input type="email"  [(ngModel)]="manager.email" name="email">
     </div>
     <div class="mb-3">
         <label >Departamento</label>
-        <input required type="email"  [(ngModel)]="manager.department" name="departament">
+        <input type="email"  [(ngModel)]="manager.department" name="departament">
     </div>
     <button [disabled]="managerForm.invalid" type="submit">{{ buttonSubmit }}</button>
 </form>

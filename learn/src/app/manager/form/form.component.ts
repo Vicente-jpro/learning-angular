@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Manager } from '../manager';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'manager-form',
@@ -10,13 +10,29 @@ import { FormsModule } from '@angular/forms';
 })
 export class FormComponent {
     @Input() title = ''
-    @Input() manager!: Manager;
+    @Input() manager: Manager = { id: '', name: '', email: '', department: '' };
     @Input() buttonSubmit = ''
     
     @Output() managerEvent = new EventEmitter<Manager>
-    onSubtimit(){
 
+    form;
+
+    constructor( private fb: FormBuilder ){
+      this.form = this.fb.group({
+        name: [this.manager.name, [Validators.required, Validators.minLength(5), Validators.maxLength(90)]],
+        email: [this.manager.email, [Validators.required, Validators.email]],
+        department: [this.manager.department, [Validators.required]]
+      });
+    }
+    onSubtimit(){
       this.managerEvent.emit(this.manager)
+      
+      if (this.form.invalid) {
+        
+        console.log('Is invalid',this.form.markAllAsTouched());
+      }
+
+
       console.log(this.manager)
     }
 }
