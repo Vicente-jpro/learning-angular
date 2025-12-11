@@ -4,10 +4,12 @@ import { EmployeeComponent } from './employee/employee.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { loginGuard } from './guards/login.guard';
+import { managerGuard } from './manager/guards/manager.guard';
 
 export const routes: Routes = [
     {
         path: 'managers',
+        canActivateChild: [managerGuard],
         children: [
             {
                 path: '',

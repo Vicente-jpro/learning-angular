@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { FormsModule} from '@angular/forms';
-import { RoomsComponent } from './rooms/rooms.component';
 import { localStorageToken } from './localstorage.token';
 
 @Component({
@@ -9,8 +8,7 @@ import { localStorageToken } from './localstorage.token';
   imports: [
     RouterOutlet, 
     RouterLink,
-    FormsModule, 
-    RoomsComponent
+    FormsModule
   ],
   standalone: true,
   templateUrl: './app.component.html',
